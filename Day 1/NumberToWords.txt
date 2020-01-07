@@ -1,0 +1,92 @@
+# Problem: Logic to print number in words up to a billion
+# Solution by Raunak Sarbajna
+# 6th January, 2020
+
+    
+singles = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+tens = ["twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
+doubles = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen" "sixteen", "seventeen", "eighteen", "nineteen"]
+large = ["hundred", "thousand", "million", "billion"]
+
+function HundredsToWords(a):
+    """
+        Returns the entered number in hundreds converted into words
+
+        Number must be positive
+
+        Only works for numbers in hundreds
+    """
+    
+    numLength ← Number of Digits(a)
+
+    for all digits of number do:
+        if (numLength - index) > 2:
+            numstring += singles[num] + " hundred"
+            if (numlist[index+1] != 0) or (numlist[index+2] != 0):
+                numstring += " and"
+        else if ((numLength - index) > 1) and (num == 1):
+            numstring += " " + doubles[numlist[index+1]]
+            break
+        else if ((numLength - index) > 1) and (num > 1):
+            numstring += " " + tens[numlist[index]]
+        else if ((numLength - index) == 1):
+            numstring += " " + singles[numlist[index]]
+    end
+
+    return numstring.strip()
+
+function LargeNumberToWords(integer a):
+    """
+        Returns the entered number converted into words
+
+        Number can be positive or Negative
+
+        Only works for numbers in billions
+    """
+
+    if number a is negative do
+        print minus
+
+    a ← absolute value of a
+
+    numLength ← Number of Digits(a)
+
+    if (numLength < 1) or (numLength > 12)
+        return null
+    for all digits of number do:
+        for the first three billions digits do:
+            size = numLength - 9
+            numstring += HundredsToWords(number[:size]) ) + " billion "
+        end
+        for the next three millions digits do:
+            size = numLength - 6
+            if number is greater than a billion
+                numstring += HundredsToWords(number[3:size]) ) + " million "
+            else:
+                numstring += HundredsToWords(number[:size]) ) + " million "
+        end
+        for the next three thousands digits do:
+            size = numLength - 3
+            if number is greater than a billion
+                numstring += HundredsToWords(number[6:size]) ) + " thousand "
+            else if number is greater than a million
+                numstring += HundredsToWords(number[3:size]) ) + " thousand "
+            else:
+                numstring += HundredsToWords(number[:size]) ) + " thousand "
+        end
+        for the final three digits do:
+            size = numLength
+            if number is greater than a billion
+                numstring += HundredsToWords(number[9:size]) )
+            else if number is greater than a million
+                numstring += HundredsToWords(number[6:size]) )
+            else if number is greater than a thousand
+                numstring += HundredsToWords(number[3:size]) )
+            else:
+                numstring += HundredsToWords(number[:size]) )
+        end
+    end
+    
+    return numstring
+
+

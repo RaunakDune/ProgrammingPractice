@@ -1,0 +1,21 @@
+# Problem: To determine the highest of two numbers without using relational operators.
+# Solution by Raunak Sarbajna
+# 6th January, 2020
+
+function compareNumbers(integer a, integer b):
+    """
+        Returns the higher of the two input numbers
+
+        Does not use any relational operators
+
+        Input integers can be either positive or negative
+    """
+
+    sum ← (a + b)
+
+    difference ← Absolute Value of (a - b)
+
+    LargerNumber ← (sum + difference) / 2
+
+    return LargerNumber
+
